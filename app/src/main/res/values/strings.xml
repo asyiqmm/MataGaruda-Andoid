@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MataGaruda</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+</resources>
