@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/colorAccent"
+              android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/lblListItem"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Device ID :"
+            android:paddingBottom="5dp"
+            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+            android:paddingTop="5dp"
+            android:textSize="13sp" />
+
+    <TextView
+            android:id="@+id/lblListItem2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Hostname :"
+            android:paddingBottom="5dp"
+            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+            android:paddingTop="5dp"
+            android:textSize="13sp" />
+
+</LinearLayout>
