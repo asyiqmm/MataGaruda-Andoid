@@ -1,4 +1,4 @@
-package com.example.matagaruda;
+package com.example.matagaruda.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import com.example.matagaruda.R;
 
 public class SensorlistFragment extends Fragment {
 
@@ -37,7 +38,7 @@ public class SensorlistFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_sensorlist, container, false);
-
+        getActivity().setTitle("Sensor List");
         return rootView;
     }
 
@@ -106,7 +107,7 @@ public class SensorlistFragment extends Fragment {
                 convertView = inf.inflate(R.layout.list_sensor_item, parent, false);
                 holder = new ViewHolder();
 
-                holder.text = (TextView) convertView.findViewById(R.id.lblListItem);
+                holder.text = (TextView) convertView.findViewById(R.id.txt_device);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();

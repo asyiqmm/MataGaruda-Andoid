@@ -41,7 +41,7 @@
                     android:id="@+id/textLokasiSensor"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="ini lokasi"
+                    android:text="Status"
                     android:gravity="center_vertical"
                     android:paddingLeft="6dip"
                     android:textColor="#e0e2e7"

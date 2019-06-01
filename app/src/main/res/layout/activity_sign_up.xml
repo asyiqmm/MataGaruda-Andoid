@@ -5,8 +5,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        tools:context=".SignUp">
+        android:background="#ffffff"
+        tools:context=".Activity.SignUp">
     <android.support.v7.widget.Toolbar
             android:id="@+id/login_activity_toolbar"
             android:layout_width="match_parent"
@@ -91,8 +91,8 @@
             android:id="@+id/registerSignUp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="60dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registerCompany" android:layout_marginTop="16dp"/>
     <TextView
             android:id="@+id/loginSignUp"
             android:textColor="@color/colorAccent"

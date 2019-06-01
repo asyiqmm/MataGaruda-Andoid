@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff"
-        tools:context=".SignIn">
+        tools:context=".Activity.SignIn">
     <android.support.v7.widget.Toolbar
             android:id="@+id/login_activity_toolbar"
             android:layout_width="match_parent"
