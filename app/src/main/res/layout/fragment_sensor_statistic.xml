@@ -6,9 +6,12 @@
              tools:context=".Fragments.SensorStatisticFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+
+    <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/linechartsensor"
+            android:layout_margin="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+    </com.github.mikephil.charting.charts.LineChart>
 
 </FrameLayout>

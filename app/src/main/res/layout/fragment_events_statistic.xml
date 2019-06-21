@@ -1,14 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/holo_blue_light">
-
-    <TextView
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#fff"
+              android:orientation="vertical">
+    <RelativeLayout
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="8dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Chat Fragment"
-            android:textSize="30sp" />
+            android:layout_height="wrap_content">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="8"
+                android:orientation="horizontal"
+                android:background="@drawable/outline_shape_dropdown">
+            <Spinner
+                    android:id="@+id/spnGift"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:overlapAnchor="false"
+                    android:spinnerMode="dropdown"/>
 
-</RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="-5dp"
+                android:background="#fff"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="Select Sensor"
+                android:textColor="#424242"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+                android:id="@+id/btn_hourly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hourly"
+        />
+        <Button
+                android:id="@+id/btn_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daily"
+        />
+        <Button
+                android:id="@+id/btn_monthly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monthly"
+        />
+    </LinearLayout>
+    <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/linechart"
+            android:layout_margin="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+    </com.github.mikephil.charting.charts.LineChart>
+</LinearLayout>

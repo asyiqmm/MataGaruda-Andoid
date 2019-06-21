@@ -1,11 +1,15 @@
 package com.example.matagaruda.Fragments;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import com.example.matagaruda.R;
@@ -39,6 +43,15 @@ public class SensorlistFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_sensorlist, container, false);
         getActivity().setTitle("Sensor List");
+        FloatingActionButton btn_addsensor = (FloatingActionButton) rootView.findViewById(R.id.btn_addsensor);
+        btn_addsensor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.fragment_container, new AddSensorFragment());
+                fr.commit();
+            }
+        });
         return rootView;
     }
 
@@ -145,19 +158,5 @@ public class SensorlistFragment extends Fragment {
         private class ViewHolder {
             TextView text;
         }
-    }}
-//import android.os.Bundle;
-//import android.support.annotation.NonNull;
-//import android.support.annotation.Nullable;
-//import android.support.v4.app.Fragment;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//
-//public class SensorlistFragment extends Fragment {
-//    @Nullable
-//    @Override
-//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        return inflater.inflate(R.layout.fragment_sensorlist, container, false);
-//    }
-//}
+    }
+}

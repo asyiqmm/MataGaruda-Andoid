@@ -1,69 +1,77 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@color/colorAccent"
-              android:orientation="vertical">
-
-    <TextView
-            android:id="@+id/txt_device"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Device ID :"
-            android:paddingBottom="5dp"
-            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
-            android:paddingTop="5dp"
-            android:textSize="13sp" />
-
-    <TextView
-            android:id="@+id/txt_hostname"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Hostname :"
-            android:paddingBottom="5dp"
-            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
-            android:paddingTop="5dp"
-            android:textSize="13sp" />
-    <TextView
-            android:id="@+id/txt_sensorkey"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Sensor Key :"
-            android:paddingBottom="5dp"
-            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
-            android:paddingTop="5dp"
-            android:textSize="13sp" />
-    <TextView
-            android:id="@+id/txt_lokasi"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Lokasi :"
-            android:paddingBottom="5dp"
-            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
-            android:paddingTop="5dp"
-            android:textSize="13sp" />
+              android:orientation="vertical"
+              android:paddingRight="10dp"
+              android:paddingLeft="10dp">
     <LinearLayout
-            android:orientation="horizontal"
-            android:gravity="center"
+            android:orientation="vertical"
+            android:background="#bdc3c7"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <Button
-                android:id="@+id/btn_stop"
-                android:layout_width="wrap_content"
+            android:layout_height="170dp">
+        <TextView
+                android:id="@+id/txt_device"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:text="Stop" android:backgroundTint="#fff"/>
-        <Button
-                android:id="@+id/btn_edit"
-                android:layout_width="wrap_content"
+                android:text="Device ID :"
+                android:paddingBottom="5dp"
+                android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+                android:paddingTop="5dp"
+                android:textSize="13sp"/>
+
+        <TextView
+                android:id="@+id/txt_hostname"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:text="Edit"/>
-        <Button
-                android:id="@+id/btn_remove"
-                android:layout_width="wrap_content"
+                android:text="Hostname :"
+                android:paddingBottom="5dp"
+                android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+                android:paddingTop="5dp"
+                android:textSize="13sp"/>
+        <TextView
+                android:id="@+id/txt_sensorkey"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:text="Remove"/>
+                android:text="Sensor Key :"
+                android:paddingBottom="5dp"
+                android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+                android:paddingTop="5dp"
+                android:textSize="13sp"/>
+        <TextView
+                android:id="@+id/txt_lokasi"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Lokasi :"
+                android:paddingBottom="5dp"
+                android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+                android:paddingTop="5dp"
+                android:textSize="13sp"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="bottom|center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <Button
+                    android:id="@+id/btn_stop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:text="Stop" android:backgroundTint="#3498db"/>
+            <Button
+                    android:id="@+id/btn_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:backgroundTint="#f39c12"
+                    android:text="Edit"/>
+            <Button
+                    android:id="@+id/btn_remove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:backgroundTint="#e74c3c"
+                    android:text="Remove"/>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
