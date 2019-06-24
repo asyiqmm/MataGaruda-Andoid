@@ -1,6 +1,5 @@
 package com.example.matagaruda.Fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,7 +8,7 @@ import android.view.*;
 import android.widget.ListView;
 import android.widget.SearchView;
 import com.example.matagaruda.Adapter.EventsAdapter;
-import com.example.matagaruda.Model.Events;
+import com.example.matagaruda.Models.Events;
 import com.example.matagaruda.R;
 
 import java.util.ArrayList;

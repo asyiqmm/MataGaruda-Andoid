@@ -1,4 +1,4 @@
-package com.example.matagaruda.Activity;
+package com.example.matagaruda.Activities;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
