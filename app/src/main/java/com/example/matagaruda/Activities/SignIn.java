@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.example.matagaruda.Api.Api;
+import com.example.matagaruda.Api.Base64Encoder;
 import com.example.matagaruda.Api.UtilsApi;
 import com.example.matagaruda.R;
 import okhttp3.ResponseBody;
@@ -23,12 +25,12 @@ import retrofit2.Response;
 import java.io.IOException;
 
 
-public class SignIn extends AppCompatActivity{
+public class SignIn extends AppCompatActivity {
     private static final String TAG = "SignIn";
     EditText loginPassword, loginUsername;
     Button mLogin;
     Context mContext;
-    TextView mRegist;
+    TextView mToRegist;
     Api mApiService;
     ProgressDialog loading;
 
@@ -46,18 +48,19 @@ public class SignIn extends AppCompatActivity{
         loginUsername = (EditText) findViewById(R.id.loginUsername);
         loginPassword = (EditText) findViewById(R.id.loginPassword);
         mLogin = (Button) findViewById(R.id.btn_login);
-        mRegist = (TextView) findViewById(R.id.logintoregister);
+        mToRegist = (TextView) findViewById(R.id.logintoregister);
 
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loading = ProgressDialog.show(mContext, null, "Please wait...", true, false);
+                loginUse();
                 requestLogin();
             }
         });
-
-        mRegist.setOnClickListener(new View.OnClickListener() {
+        //mengarahkan ke SignUp Activity
+        mToRegist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, SignUp.class));
@@ -76,18 +79,23 @@ public class SignIn extends AppCompatActivity{
     }
 
     private void requestLogin() {
-        mApiService.userLogin(loginUsername.getText().toString(), loginPassword.getText().toString(),"Basic YWRtaW46YWRtaW4=")
+        String encoding = Base64Encoder.encode(loginUsername.getText().toString() + ":" + loginPassword.getText().toString());
+        Log.d(TAG, "Basic: " + encoding);
+        //mendapatkan inputan dari form username dan password
+        mApiService.loginUser(loginUsername.getText().toString(), loginPassword.getText().toString(), "Basic " + encoding) //basic Auth
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
                             loading.dismiss();
                             try {
+                                //mendapatkan token
                                 JSONObject jsonRESULTS = new JSONObject(response.body().string());
-                                Log.d(TAG, "ini token: "+jsonRESULTS.getString("token"));
+//                                Log.d(TAG, "ini token: "+jsonRESULTS.getString("token"));
                                 UtilsApi.TOKEN = jsonRESULTS.getString("token");
-                                Log.d(TAG, "saya panggil token: "+UtilsApi.TOKEN);
-                                Intent i = new Intent(SignIn.this,MainActivity.class);
+//                                Log.d(TAG, "saya panggil token: "+UtilsApi.TOKEN); //memanggil token dari utilsApi
+                                Intent i = new Intent(SignIn.this, MainActivity.class);
+                                Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT).show();
                                 startActivity(i);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -95,6 +103,7 @@ public class SignIn extends AppCompatActivity{
                                 e.printStackTrace();
                             }
                         } else {
+                            Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
                             loading.dismiss();
                         }
                     }
@@ -103,8 +112,23 @@ public class SignIn extends AppCompatActivity{
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Log.e("debug", "onFailure: ERROR > " + t.toString());
                         loading.dismiss();
-
                     }
                 });
+    }
+    private void loginUse() {
+        String username = loginUsername.getText().toString().trim();
+        String password = loginPassword.getText().toString().trim();
+
+        if (username.isEmpty()) {
+            loginUsername.setError("Username is required");
+            loginUsername.requestFocus();
+            return;
+        }
+        if (password.isEmpty()) {
+            loginPassword.setError("Password required");
+            loginPassword.requestFocus();
+            return;
+        }
+        return;
     }
 }
