@@ -5,148 +5,106 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.example.matagaruda.Api.Api;
-import com.example.matagaruda.Api.RetrofitClient;
 import com.example.matagaruda.Api.UtilsApi;
-import com.example.matagaruda.Models.LoginResponse;
 import com.example.matagaruda.R;
-import com.example.matagaruda.storage.SharedPrefManager;
+import okhttp3.ResponseBody;
 import org.json.JSONException;
 import org.json.JSONObject;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Field;
 
-public class SignIn extends AppCompatActivity implements View.OnClickListener {
-    EditText loginUsername, loginPassword;
-    Button btn_login;
-    TextView logintoregist;
+import java.io.IOException;
+
+
+public class SignIn extends AppCompatActivity{
+    private static final String TAG = "SignIn";
+    EditText loginPassword, loginUsername;
+    Button mLogin;
     Context mContext;
+    TextView mRegist;
     Api mApiService;
     ProgressDialog loading;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         mContext = this;
-        //meng-init yang ada di package apihelper
-        mApiService = UtilsApi.getAPIService();
+        mApiService = UtilsApi.getAPIService(); //Inisialisasi isi package ApiHelper
         initComponents();
-
     }
 
-    public void initComponents() {
+    private void initComponents() {
         loginUsername = (EditText) findViewById(R.id.loginUsername);
         loginPassword = (EditText) findViewById(R.id.loginPassword);
-        btn_login = (Button) findViewById(R.id.btn_login);
-        logintoregist = (TextView) findViewById(R.id.logintoregister);
+        mLogin = (Button) findViewById(R.id.btn_login);
+        mRegist = (TextView) findViewById(R.id.logintoregister);
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
+
+        mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                loading = ProgressDialog.show(mContext, null, "Please Wait...", true, false);
+            public void onClick(View v) {
+                loading = ProgressDialog.show(mContext, null, "Please wait...", true, false);
                 requestLogin();
             }
         });
-        logintoregist.setOnClickListener(new View.OnClickListener() {
+
+        mRegist.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 startActivity(new Intent(mContext, SignUp.class));
             }
         });
+
     }
 
-    public void requestLogin() {
-        mApiService.userLogin(loginUsername.getText().toString(), loginPassword.getText().toString())
-                .enqueue(new Callback<LoginResponse>() {
+    /**
+     * Take care of popping the fragment back stack or finishing the activity
+     * as appropriate.
+     */
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    private void requestLogin() {
+        mApiService.userLogin(loginUsername.getText().toString(), loginPassword.getText().toString(),"Basic YWRtaW46YWRtaW4=")
+                .enqueue(new Callback<ResponseBody>() {
                     @Override
-                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
                             loading.dismiss();
                             try {
-                                JSONObject jsonRESULT = new JSONObject(response.body().toString());
-                                if (jsonRESULT.getString("error").equals("false")){
-                                    Toast.makeText(mContext,"Berhasil login",Toast.LENGTH_SHORT).show();
-
-                                }
-                            }catch (JSONException e){
+                                JSONObject jsonRESULTS = new JSONObject(response.body().string());
+                                Log.d(TAG, "ini token: "+jsonRESULTS.getString("token"));
+                                UtilsApi.TOKEN = jsonRESULTS.getString("token");
+                                Log.d(TAG, "saya panggil token: "+UtilsApi.TOKEN);
+                                Intent i = new Intent(SignIn.this,MainActivity.class);
+                                startActivity(i);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                        } else {
+                            loading.dismiss();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.e("debug", "onFailure: ERROR > " + t.toString());
+                        loading.dismiss();
 
                     }
                 });
-    }
-
-    private void userLogin() {
-        String username = loginUsername.getText().toString().trim();
-        String password = loginPassword.getText().toString().trim();
-
-        if (username.isEmpty()) {
-            loginUsername.setError("Username is required");
-            loginUsername.requestFocus();
-            return;
-        }
-        if (password.isEmpty()) {
-            loginPassword.setError("Password required");
-            loginPassword.requestFocus();
-            return;
-        }
-        Call<LoginResponse> call = RetrofitClient
-                .getInstance().getApi().userLogin(username, password);
-
-        call.enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(retrofit2.Call<LoginResponse> call, Response<LoginResponse> response) {
-                LoginResponse loginResponse = response.body();
-
-                if (!loginResponse.isError()) {
-
-                    SharedPrefManager.getInstance(SignIn.this)
-                            .saveUser(loginResponse.getUser());
-
-                    Intent intent = new Intent(SignIn.this, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-
-
-                } else {
-                    Toast.makeText(SignIn.this, loginResponse.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void userRegister(View view) {
-        Intent intent = new Intent(SignIn.this, SignUp.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_login:
-                userLogin();
-                break;
-            case R.id.logintoregister:
-                userRegister(v);
-                break;
-        }
     }
 }

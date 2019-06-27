@@ -12,7 +12,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:title="Login"
-            tools:ignore="MissingConstraints"></android.support.v7.widget.Toolbar>
+            tools:ignore="MissingConstraints">
+
+    </android.support.v7.widget.Toolbar>
+    <RelativeLayout
+            android:id="@+id/loadingPanel"
+            android:gravity="center"
+            android:elevation="2dp"
+            android:visibility="gone"
+            android:layout_width="match_parent" android:layout_height="match_parent">
+        <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"/>
+    </RelativeLayout>
     <android.support.constraint.Guideline
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:id="@+id/guideline"
@@ -29,8 +42,7 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline"/>
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/loginPassword"/>
     <EditText
             android:background="@drawable/edit_text_style"
             android:layout_width="wrap_content"
@@ -69,11 +81,21 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:id="@+id/imageView"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/loginUsername" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/login_activity_toolbar"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"/>
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/loginUsername"/>
+    <!--<AutoCompleteTextView-->
+    <!--android:background="@drawable/edit_text_style"-->
+    <!--android:hint="username"-->
+    <!--android:ems="10"-->
+    <!--android:layout_marginEnd="8dp"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/username" app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="8dp"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/loginPassword" android:layout_marginStart="8dp"/>-->
 
 
 </android.support.constraint.ConstraintLayout>

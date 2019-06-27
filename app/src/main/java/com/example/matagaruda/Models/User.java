@@ -64,4 +64,6 @@ public class User {
         this.email = email;
         this.company = company;
     }
+
+
 }
