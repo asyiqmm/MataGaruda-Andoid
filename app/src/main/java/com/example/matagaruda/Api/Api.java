@@ -1,5 +1,6 @@
 package com.example.matagaruda.Api;
 
+import com.example.matagaruda.Models.SensorModel;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -25,6 +26,11 @@ public interface Api {
             @Field("email") String email,
             @Field("company") String company);
 
-
+    @FormUrlEncoded // List Sensor
+    @POST("/api/sensors/v1.0/listsensors")
+    Call<SensorModel> listSensor(
+            @Field("username") String username,
+            @Field("password") String password,
+            @Header("Authorization") String authtoken);
 
 }

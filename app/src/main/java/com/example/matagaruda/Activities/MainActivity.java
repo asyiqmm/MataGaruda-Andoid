@@ -1,20 +1,24 @@
 package com.example.matagaruda.Activities;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
+import com.example.matagaruda.Api.UtilsApi;
 import com.example.matagaruda.Fragments.*;
 import com.example.matagaruda.R;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = "";
     private DrawerLayout drawer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,20 +29,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        TextView txtuname = (TextView) navigationView.getHeaderView(0).findViewById(R.id.uname);
+        txtuname.setText("Welcome "+ UtilsApi.username);
+        TextView txtuemail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.uemail);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new SensorlistFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_sensor);
         }
     }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item

@@ -10,11 +10,11 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:id="@+id/linearLayout">
-        <ExpandableListView
-                android:id="@+id/expListView"
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/listViewSensor"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-        </ExpandableListView>
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
     <android.support.constraint.ConstraintLayout
             android:id="@+id/rootLayout"
@@ -29,18 +29,6 @@
                 android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="parent"/>
     </android.support.constraint.ConstraintLayout>
-
-    <!--<android.support.design.widget.FloatingActionButton-->
-    <!--android:id="@+id/addsensor"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="bottom|end"-->
-    <!--app:srcCompat="@android:drawable/ic_input_add" app:backgroundTint="#ffffff" app:rippleColor="#00FFFFFF"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:layout_marginEnd="32dp" android:layout_alignParentEnd="true"-->
-    <!--android:layout_alignParentTop="true" android:layout_alignParentStart="true"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="32dp"/>-->
 
 
 </android.support.constraint.ConstraintLayout>

@@ -15,6 +15,7 @@ import com.example.matagaruda.Api.Api;
 import com.example.matagaruda.Api.Base64Encoder;
 import com.example.matagaruda.Api.UtilsApi;
 import com.example.matagaruda.R;
+import com.example.matagaruda.storage.Preferences;
 import okhttp3.ResponseBody;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +34,7 @@ public class SignIn extends AppCompatActivity {
     TextView mToRegist;
     Api mApiService;
     ProgressDialog loading;
-
+    Preferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class SignIn extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         mContext = this;
         mApiService = UtilsApi.getAPIService(); //Inisialisasi isi package ApiHelper
+        preferences = new Preferences(this);
         initComponents();
     }
 
@@ -55,10 +57,10 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loading = ProgressDialog.show(mContext, null, "Please wait...", true, false);
-                loginUse();
                 requestLogin();
             }
         });
+
         //mengarahkan ke SignUp Activity
         mToRegist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +68,6 @@ public class SignIn extends AppCompatActivity {
                 startActivity(new Intent(mContext, SignUp.class));
             }
         });
-
     }
 
     /**
@@ -84,19 +85,25 @@ public class SignIn extends AppCompatActivity {
         //mendapatkan inputan dari form username dan password
         mApiService.loginUser(loginUsername.getText().toString(), loginPassword.getText().toString(), "Basic " + encoding) //basic Auth
                 .enqueue(new Callback<ResponseBody>() {
+
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        loginUse();
                         if (response.isSuccessful()) {
                             loading.dismiss();
                             try {
                                 //mendapatkan token
+                                Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT).show();
                                 JSONObject jsonRESULTS = new JSONObject(response.body().string());
 //                                Log.d(TAG, "ini token: "+jsonRESULTS.getString("token"));
+                                UtilsApi.username = loginUsername.getText().toString();
+                                UtilsApi.password = loginPassword.getText().toString();
                                 UtilsApi.TOKEN = jsonRESULTS.getString("token");
+                                Log.d(TAG, "username log"+UtilsApi.username);
 //                                Log.d(TAG, "saya panggil token: "+UtilsApi.TOKEN); //memanggil token dari utilsApi
-                                Intent i = new Intent(SignIn.this, MainActivity.class);
-                                Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT).show();
-                                startActivity(i);
+                                startActivity(new Intent(mContext, MainActivity.class)
+                                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                                finish();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             } catch (IOException e) {
