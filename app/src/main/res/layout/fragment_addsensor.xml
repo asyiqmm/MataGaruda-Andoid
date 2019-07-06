@@ -15,6 +15,7 @@
             android:textSize="15sp"
     />
     <EditText
+            android:id="@+id/addDeviceName"
             android:padding="8dp"
             android:ems="10"
             android:layout_width="match_parent"
@@ -29,6 +30,7 @@
             android:text="Hostname"
     />
     <EditText
+            android:id="@+id/addHostname"
             android:padding="8dp"
             android:ems="10"
             android:layout_width="match_parent"
@@ -43,6 +45,7 @@
             android:text="IP Address"
     />
     <EditText
+            android:id="@+id/addIPAddress"
             android:padding="8dp"
             android:ems="10"
             android:layout_width="match_parent"
@@ -57,6 +60,7 @@
             android:text="Location"
     />
     <EditText
+            android:id="@+id/addLocation"
             android:padding="8dp"
             android:ems="10"
             android:layout_width="match_parent"
@@ -71,6 +75,7 @@
             android:text="Protected Subnet"
     />
     <EditText
+            android:id="@+id/addProtected"
             android:padding="8dp"
             android:ems="10"
             android:layout_width="match_parent"
@@ -85,6 +90,7 @@
             android:gravity="end|bottom"
     >
         <Button
+                android:id="@+id/addSensor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Create Sensor"

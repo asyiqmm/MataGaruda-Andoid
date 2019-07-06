@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +25,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import java.util.List;
-
-import static android.support.constraint.Constraints.TAG;
 
 public class EventsFragment extends Fragment {
     private View paramView;
@@ -83,10 +80,10 @@ public class EventsFragment extends Fragment {
                     public void onResponse(Call<EventsModel> call, Response<EventsModel> response) {
                         if (response.code()==200){
                             events = response.body().getData();
-                            Log.d(TAG, "INI EVENTS: "+events.get(0).getProtocol());
+//                            Log.d(TAG, "INI EVENTS: "+events.get(0).getProtocol());
                             eventsAdapter = new EventsAdapter(getContext(),events);
                             recyclerView.setAdapter(eventsAdapter);
-                            Log.d(TAG, "onResponse: ");
+//                            Log.d(TAG, "onResponse: ");
                             Toast.makeText(getContext(),"Event Successs",Toast.LENGTH_SHORT).show();
                         }
                         else {
@@ -115,10 +112,10 @@ public class EventsFragment extends Fragment {
                     public void onResponse(Call<EventsModel> call, Response<EventsModel> response) {
                         if (response.code()==200){
                             events = response.body().getData();
-                            Log.d(TAG, "INI EVENTS: "+events.get(0).getProtocol());
+//                            Log.d(TAG, "INI EVENTS: "+events.get(0).getProtocol());
                             eventsAdapter = new EventsAdapter(getContext(),events);
                             recyclerView.setAdapter(eventsAdapter);
-                            Log.d(TAG, "onResponse: ");
+//                            Log.d(TAG, "onResponse: ");
                             Toast.makeText(getContext(),"Event Successs",Toast.LENGTH_SHORT).show();
                         }
                         else {

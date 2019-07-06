@@ -25,6 +25,15 @@ public class User {
     @Expose
     private String company;
 
+    public User(String username, String password, String firstName, String lastName, String email, String company) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.company = company;
+    }
+
     public String getUsername() {
         return username;
     }

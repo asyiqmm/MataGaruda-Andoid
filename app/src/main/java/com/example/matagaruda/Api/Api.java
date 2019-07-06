@@ -1,8 +1,6 @@
 package com.example.matagaruda.Api;
 
-import com.example.matagaruda.Models.EventsModel;
-import com.example.matagaruda.Models.EventsRaw;
-import com.example.matagaruda.Models.SensorModel;
+import com.example.matagaruda.Models.*;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -15,15 +13,8 @@ public interface Api {
             @Field("password") String password,
             @Header("Authorization") String authtoken);
 
-    @FormUrlEncoded //register user
-    @POST("api/users/v1.0/createuser")
-    Call<ResponseBody> createUser(
-            @Field("username") String username,
-            @Field("first_name") String first_name,
-            @Field("last_name") String last_name,
-            @Field("password_hash") String password_hash,
-            @Field("email") String email,
-            @Field("company") String company);
+    @POST("api/users/v1.0/createuser") //register
+    Call<User> createUser(@Body User user);
 
     @FormUrlEncoded // List Sensor
     @POST("/api/sensors/v1.0/listsensors")
@@ -32,11 +23,14 @@ public interface Api {
             @Field("password") String password,
             @Header("Authorization") String authtoken);
 
-
-    @POST("/api/statistic/v1.0/rawdata")
+    @POST("/api/statistic/v1.0/rawdata") //events
     Call<EventsModel> listEvents(
             @Header("Authorization") String authtoken,
             @Body EventsRaw raw);
 
+    @POST("/api/sensors/v1.0/createsensor") //create sensor
+    Call<SensorRaw> createSensor(
+            @Header("Authorization") String authtoken,
+            @Body SensorRaw sensorRaw);
 
 }

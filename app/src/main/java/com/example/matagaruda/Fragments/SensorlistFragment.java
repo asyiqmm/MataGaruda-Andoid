@@ -1,7 +1,9 @@
 package com.example.matagaruda.Fragments;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,6 +27,7 @@ public class SensorlistFragment extends Fragment {
     private RecyclerView recyclerView;
     private List<Sensor> sensors;
     private View view;
+    private FloatingActionButton ft;
 
     SensorListAdapter sensorListAdapter;
     Api api;
@@ -33,6 +36,18 @@ public class SensorlistFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_sensorlist, container, false);
         api = UtilsApi.getAPIService();
         recyclerView = (RecyclerView) view.findViewById(R.id.listViewSensor);
+        ft = (FloatingActionButton) view.findViewById(R.id.btn_addsensor);
+
+        ft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fr= getFragmentManager().beginTransaction();
+                fr.replace(R.id.fragment_container, new AddSensorFragment());
+                fr.addToBackStack(null);
+                fr.commit();
+            }
+        });
+
         listsensor();
         return view;
     }

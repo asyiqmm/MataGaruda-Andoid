@@ -49,7 +49,7 @@ public class SignIn extends AppCompatActivity {
     private void initComponents() {
         loginUsername = (EditText) findViewById(R.id.loginUsername);
         loginPassword = (EditText) findViewById(R.id.loginPassword);
-        mLogin = (Button) findViewById(R.id.btn_login);
+        mLogin = (Button) findViewById(R.id.btn_register);
         mToRegist = (TextView) findViewById(R.id.logintoregister);
 
 

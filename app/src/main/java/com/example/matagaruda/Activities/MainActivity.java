@@ -1,5 +1,6 @@
 package com.example.matagaruda.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -53,44 +54,54 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ) {
         switch (item.getItemId()) {
             case R.id.nav_sensor:
+                setTitle("List Sensor");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new SensorlistFragment()).commit();
                 break;
-
             case R.id.nav_events:
+                setTitle("Raw Events");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new EventsFragment()).commit();
                 break;
             case R.id.nav_events_statistic:
+                setTitle("Event Hit");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new EventsStatisticFragment()).commit();
                 break;
             case R.id.nav_sensor_statistic:
+                setTitle("Sensor Statistic");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new SensorStatisticFragment()).commit();
                 break;
             case R.id.nav_top_signature:
+                setTitle("Top Signature");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new TopSignatureFragment()).commit();
                 break;
             case R.id.nav_top_protocols:
+                setTitle("Top Protocol");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new TopProtocolsFragment()).commit();
                 break;
             case R.id.nav_daily:
+                setTitle("Daily Report");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new DailyFragment()).commit();
                 break;
             case R.id.nav_monthly:
+                setTitle("Monthly Report");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new MonthlyFragment()).commit();
                 break;
             case R.id.nav_usually:
+                setTitle("Anually Report");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new UsuallyFragment()).commit();
                 break;
             case R.id.nav_logout:
+                startActivity(new Intent(MainActivity.this,SignIn.class));
                 Toast.makeText(this, "Log Out Successful", Toast.LENGTH_SHORT).show();
+                finish();
                 break;
         }
 

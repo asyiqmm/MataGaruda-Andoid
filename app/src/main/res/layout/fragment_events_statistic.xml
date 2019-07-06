@@ -66,6 +66,14 @@
             android:id="@+id/linechart"
             android:layout_margin="10dp"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="300dp">
     </com.github.mikephil.charting.charts.LineChart>
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/listeventstatic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 </LinearLayout>

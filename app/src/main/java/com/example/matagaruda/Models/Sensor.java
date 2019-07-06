@@ -46,6 +46,14 @@ public class Sensor {
     @Expose
     private String topicResp;
 
+    public Sensor(String deviceName, String hostname, String ipAddress, String location, String protectedSubnet) {
+        this.deviceName = deviceName;
+        this.hostname = hostname;
+        this.ipAddress = ipAddress;
+        this.location = location;
+        this.protectedSubnet = protectedSubnet;
+    }
+
     public String getDeviceId() {
         return deviceId;
     }
