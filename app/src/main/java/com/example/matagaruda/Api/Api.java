@@ -1,12 +1,11 @@
 package com.example.matagaruda.Api;
 
+import com.example.matagaruda.Models.EventsModel;
+import com.example.matagaruda.Models.EventsRaw;
 import com.example.matagaruda.Models.SensorModel;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.Header;
-import retrofit2.http.POST;
+import retrofit2.http.*;
 
 public interface Api {
     @FormUrlEncoded //login user
@@ -32,5 +31,12 @@ public interface Api {
             @Field("username") String username,
             @Field("password") String password,
             @Header("Authorization") String authtoken);
+
+
+    @POST("/api/statistic/v1.0/rawdata")
+    Call<EventsModel> listEvents(
+            @Header("Authorization") String authtoken,
+            @Body EventsRaw raw);
+
 
 }

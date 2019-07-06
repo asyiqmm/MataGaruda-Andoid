@@ -6,7 +6,6 @@
                 android:background="@color/colorPrimary"
                 android:layout_margin="10dp"
                 android:padding="6dip" >
-
     <TextView
 
             android:id="@+id/textView1"

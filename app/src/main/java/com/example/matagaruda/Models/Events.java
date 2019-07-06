@@ -1,84 +1,223 @@
+
 package com.example.matagaruda.Models;
 
-public class Events {
-    int id;
-    String time;
-    String signature_id;
-    String alert_message;
-    String ip_source;
-    String ip_destination;
-    String sensor;
-    String protocol;
-    int attacker_port;
-    int attacked_port;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public Events(int id, String time, String signature_id, String alert_message, String ip_source, String ip_destination, String sensor, String protocol, int attacker_port, int attacked_port) {
-        this.id = id;
-        this.time = time;
-        this.signature_id = signature_id;
-        this.alert_message = alert_message;
-        this.ip_source = ip_source;
-        this.ip_destination = ip_destination;
-        this.sensor = sensor;
-        this.protocol = protocol;
-        this.attacker_port = attacker_port;
-        this.attacked_port = attacked_port;
+public class Events {
+
+    @SerializedName("alert_msg")
+    @Expose
+    private String alertMsg;
+    @SerializedName("classification")
+    @Expose
+    private Integer classification;
+    @SerializedName("company")
+    @Expose
+    private String company;
+    @SerializedName("day")
+    @Expose
+    private Integer day;
+    @SerializedName("dest_country")
+    @Expose
+    private String destCountry;
+    @SerializedName("dest_ip")
+    @Expose
+    private String destIp;
+    @SerializedName("dest_mac")
+    @Expose
+    private String destMac;
+    @SerializedName("dest_port")
+    @Expose
+    private Integer destPort;
+    @SerializedName("dest_region")
+    @Expose
+    private String destRegion;
+    @SerializedName("device_id")
+    @Expose
+    private String deviceId;
+    @SerializedName("hour")
+    @Expose
+    private Integer hour;
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("ip_type")
+    @Expose
+    private String ipType;
+    @SerializedName("minute")
+    @Expose
+    private Integer minute;
+    @SerializedName("month")
+    @Expose
+    private Integer month;
+    @SerializedName("priority")
+    @Expose
+    private Integer priority;
+    @SerializedName("protocol")
+    @Expose
+    private String protocol;
+    @SerializedName("second")
+    @Expose
+    private Integer second;
+    @SerializedName("sig_gen")
+    @Expose
+    private Integer sigGen;
+    @SerializedName("sig_id")
+    @Expose
+    private Integer sigId;
+    @SerializedName("sig_rev")
+    @Expose
+    private Integer sigRev;
+    @SerializedName("src_country")
+    @Expose
+    private String srcCountry;
+    @SerializedName("src_ip")
+    @Expose
+    private String srcIp;
+    @SerializedName("src_mac")
+    @Expose
+    private String srcMac;
+    @SerializedName("src_port")
+    @Expose
+    private Integer srcPort;
+    @SerializedName("src_region")
+    @Expose
+    private String srcRegion;
+    @SerializedName("ts")
+    @Expose
+    private String ts;
+    @SerializedName("year")
+    @Expose
+    private Integer year;
+
+    public String getAlertMsg() {
+        return alertMsg;
     }
 
-    public int getId() {
+    public void setAlertMsg(String alertMsg) {
+        this.alertMsg = alertMsg;
+    }
+
+    public Integer getClassification() {
+        return classification;
+    }
+
+    public void setClassification(Integer classification) {
+        this.classification = classification;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public Integer getDay() {
+        return day;
+    }
+
+    public void setDay(Integer day) {
+        this.day = day;
+    }
+
+    public String getDestCountry() {
+        return destCountry;
+    }
+
+    public void setDestCountry(String destCountry) {
+        this.destCountry = destCountry;
+    }
+
+    public String getDestIp() {
+        return destIp;
+    }
+
+    public void setDestIp(String destIp) {
+        this.destIp = destIp;
+    }
+
+    public String getDestMac() {
+        return destMac;
+    }
+
+    public void setDestMac(String destMac) {
+        this.destMac = destMac;
+    }
+
+    public Integer getDestPort() {
+        return destPort;
+    }
+
+    public void setDestPort(Integer destPort) {
+        this.destPort = destPort;
+    }
+
+    public String getDestRegion() {
+        return destRegion;
+    }
+
+    public void setDestRegion(String destRegion) {
+        this.destRegion = destRegion;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public Integer getHour() {
+        return hour;
+    }
+
+    public void setHour(Integer hour) {
+        this.hour = hour;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getTime() {
-        return time;
+    public String getIpType() {
+        return ipType;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setIpType(String ipType) {
+        this.ipType = ipType;
     }
 
-    public String getSignature_id() {
-        return signature_id;
+    public Integer getMinute() {
+        return minute;
     }
 
-    public void setSignature_id(String signature_id) {
-        this.signature_id = signature_id;
+    public void setMinute(Integer minute) {
+        this.minute = minute;
     }
 
-    public String getAlert_message() {
-        return alert_message;
+    public Integer getMonth() {
+        return month;
     }
 
-    public void setAlert_message(String alert_message) {
-        this.alert_message = alert_message;
+    public void setMonth(Integer month) {
+        this.month = month;
     }
 
-    public String getIp_source() {
-        return ip_source;
+    public Integer getPriority() {
+        return priority;
     }
 
-    public void setIp_source(String ip_source) {
-        this.ip_source = ip_source;
-    }
-
-    public String getIp_destination() {
-        return ip_destination;
-    }
-
-    public void setIp_destination(String ip_destination) {
-        this.ip_destination = ip_destination;
-    }
-
-    public String getSensor() {
-        return sensor;
-    }
-
-    public void setSensor(String sensor) {
-        this.sensor = sensor;
+    public void setPriority(Integer priority) {
+        this.priority = priority;
     }
 
     public String getProtocol() {
@@ -89,19 +228,92 @@ public class Events {
         this.protocol = protocol;
     }
 
-    public int getAttacker_port() {
-        return attacker_port;
+    public Integer getSecond() {
+        return second;
     }
 
-    public void setAttacker_port(int attacker_port) {
-        this.attacker_port = attacker_port;
+    public void setSecond(Integer second) {
+        this.second = second;
     }
 
-    public int getAttacked_port() {
-        return attacked_port;
+    public Integer getSigGen() {
+        return sigGen;
     }
 
-    public void setAttacked_port(int attacked_port) {
-        this.attacked_port = attacked_port;
+    public void setSigGen(Integer sigGen) {
+        this.sigGen = sigGen;
     }
+
+    public Integer getSigId() {
+        return sigId;
+    }
+
+    public void setSigId(Integer sigId) {
+        this.sigId = sigId;
+    }
+
+    public Integer getSigRev() {
+        return sigRev;
+    }
+
+    public void setSigRev(Integer sigRev) {
+        this.sigRev = sigRev;
+    }
+
+    public String getSrcCountry() {
+        return srcCountry;
+    }
+
+    public void setSrcCountry(String srcCountry) {
+        this.srcCountry = srcCountry;
+    }
+
+    public String getSrcIp() {
+        return srcIp;
+    }
+
+    public void setSrcIp(String srcIp) {
+        this.srcIp = srcIp;
+    }
+
+    public String getSrcMac() {
+        return srcMac;
+    }
+
+    public void setSrcMac(String srcMac) {
+        this.srcMac = srcMac;
+    }
+
+    public Integer getSrcPort() {
+        return srcPort;
+    }
+
+    public void setSrcPort(Integer srcPort) {
+        this.srcPort = srcPort;
+    }
+
+    public String getSrcRegion() {
+        return srcRegion;
+    }
+
+    public void setSrcRegion(String srcRegion) {
+        this.srcRegion = srcRegion;
+    }
+
+    public String getTs() {
+        return ts;
+    }
+
+    public void setTs(String ts) {
+        this.ts = ts;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
 }
